@@ -1,0 +1,12 @@
+	<tr th:if="${Serie.comentario}">
+	<td th:text="*{comentario.texto}" rowspan="2"></td>
+	</tr>
+	<tr th:unless="${Serie.comentario}">
+		<td class="form-text text-muted" rowspan="2">Nenhum comentário disponivel.</td>
+	</tr>
+	<tr>
+
+		<td class="list-group list-group-horizontal">
+			<a th:href="@{/serie/comentar/__${Serie.id}__}" class="list-group-item list-group-item-warning">Comentar</a>
+		</td>
+	</tr>

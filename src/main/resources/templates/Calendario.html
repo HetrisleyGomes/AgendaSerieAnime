@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<title>Agenda SERIEXTREME </title>
+</head>
+<body>
+
+<header class="bg-primary">
+<h1 class="p-2 ms-3">SERIEXTREME</h1>
+<div th:insert="~{/Leyout :: navbar}"></div>
+</header>
+
+<div class="position-absolute top-0 end-0 m-3"><span th:text="${data}" class="h3"></span></div>
+
+<div class="container-fluid">
+<div class="row">
+
+<main class="col-md-9 p-2">
+
+<h2 th:unless="${hoje.isEmpty()}" class="bg-primary p-1 bg-gradient">Hoje</h2>
+<table class="table table-secondary table-striped table-bordered">
+<tr th:each="Calendario : ${hoje}" th:object=${Calendario}>
+	<td class="col-md-3"> <span th:text="*{dia}"></span>/<span th:text="*{mes}"></span>/<span th:text="*{ano}"></span></td><td><span th:text="*{agendamento}"></span> </td> <td style="width:10%"><a th:href="@{/calendario/apagar/__*{id}__}" class="text-danger" role="button"> Apagar </a></td>
+</tr>
+</table>
+<br>
+
+<h2 th:unless="${estemes.isEmpty()}" class="bg-primary p-1 bg-gradient">Este Mês</h2>
+<table class="table table-secondary table-striped table-bordered">
+<tr th:each="Calendario : ${estemes}" th:object=${Calendario}>
+	<td class="col-md-3"> <span th:text="*{dia}"></span>/<span th:text="*{mes}"></span>/<span th:text="*{ano}"></span></td><td><span th:text="*{agendamento}"></span> </td><td style="width:10%"><a th:href="@{/calendario/apagar/__*{id}__}" class="text-danger" role="button"> Apagar </a></td>
+</tr>
+</table>
+<br>
+
+<h2 th:unless="${proxmes.isEmpty()}" class="bg-primary p-1 bg-gradient">Próximo Mês</h2>
+<table class="table table-secondary table-striped table-bordered">
+<tr th:each="Calendario : ${proxmes}" th:object=${Calendario}>
+	<td class="col-md-3"> <span th:text="*{dia}"></span>/<span th:text="*{mes}"></span>/<span th:text="*{ano}"></span></td><td><span th:text="*{agendamento}"></span> </td><td style="width:10%"><a th:href="@{/calendario/apagar/__*{id}__}" class="text-danger" role="button"> Apagar </a></td>
+</tr>
+</table>
+<br>
+
+<h2 th:unless="${esteano.isEmpty()}" class="bg-primary p-1 bg-gradient">Este Ano</h2>
+<table class="table table-secondary table-striped table-bordered">
+<tr th:each="Calendario : ${esteano}" th:object=${Calendario} >
+	<td class="col-md-3"> <span th:text="*{dia}"></span>/<span th:text="*{mes}"></span>/<span th:text="*{ano}"></span></td><td><span th:text="*{agendamento}"></span> </td><td style="width:10%"><a th:href="@{/calendario/apagar/__*{id}__}" class="text-danger" role="button"> Apagar </a></td>
+</tr>
+</table>
+<br>
+
+
+<hr class="w-100">
+<div>
+<a th:href="@{/cal/novo}" class="btn btn-primary m-1">Adicionar Lembrete</a>
+</div>
+
+</main>
+
+<section class="col-md-3 p-2">
+<table class="table table-striped table-bordered border-2">
+<thead>
+	<tr>
+		<th scope="col">Dia</th>
+		<th scope="col">Mês</th>
+		<th scope="col" class="col-md-3">Ano</th>
+		<th scope="col" class="col-md-7">Lembrete</th>
+	</tr>
+</thead>
+<tr th:each="Calendario : ${cal}" th:object="${Calendario}">
+	<td th:text="*{dia}"></td>
+	<td th:text="*{mes}"></td>
+	<td th:text="*{ano}"></td>
+	<td th:text="*{agendamento}"></td>
+	<td><a th:href="@{/calendario/apagar/__*{id}__}" class="text-danger" role="button"> Apagar </a></td>
+</tr>
+</table>
+
+</section>
+</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
